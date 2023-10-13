@@ -26,6 +26,11 @@ namespace ProductManagement.Repo
             return productModel;
         }
     
-
+        public string Delete(int productId)
+        {
+            Database.ExecuteSqlRaw("exec DeleteProduct @productId",
+                new SqlParameter("productId", productId));
+            return "ProductDeleted";
+        }
     }
 }

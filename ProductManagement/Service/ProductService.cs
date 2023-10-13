@@ -26,5 +26,10 @@ namespace ProductManagement.Service
         {
             return productContext.Add(productModel);
         }
+
+        public string DeleteProduct(int productId)
+        {
+            return productContext.Delete(productId);
+        }
     }
 }

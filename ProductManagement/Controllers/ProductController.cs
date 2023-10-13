@@ -20,22 +20,9 @@ namespace ProductManagement.Controllers
             products = products.OrderByDescending(u => u.CreationDate).ToList();    
             if(keyword != null)
             {
-                products = products.Where(u => u.ProductName.Contains(keyword) || u.Description.Contains(keyword) || u.Category.Contains(keyword) || u.Status.Contains(keyword)).ToList();
+                products = products.Where(u => u.ProductName.Contains(keyword) || u.Description.Contains(keyword) || u.Category.Contains(keyword) || u.Status.Contains(keyword) || u.Status.Contains(keyword)).ToList();
             }
             return View(products);
-        }
-
-        [HttpGet]
-        public IActionResult AddProduct() 
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public IActionResult AddProduct(ProductModel productModel)
-        {
-            productService.AddProduct(productModel);
-            return RedirectToAction("ProductList");
         }
 
         [HttpGet]
@@ -58,6 +45,14 @@ namespace ProductManagement.Controllers
         public IActionResult AddUpdate(ProductModel productModel)
         {
             productService.AddProduct(productModel);
+            return RedirectToAction("ProductList");
+        }
+
+        [HttpGet]
+        public IActionResult Delete(int id) 
+        {
+            
+            productService.DeleteProduct(id);
             return RedirectToAction("ProductList");
         }
     }

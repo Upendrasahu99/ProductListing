@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = "ProductList";
 }
-
+<link href="d:\cs\project\taskproject\productlisting\productmanagement\wwwroot\css\productlist.css" rel="stylesheet" />
 <h1>ProductList</h1>
 
 <p>
@@ -80,9 +80,8 @@
                 @Html.DisplayFor(modelItem => item.CreationDate)
             </td>
             <td>
-                    @Html.ActionLink("Edit", "AddUpdate", new {  code=item.Code  }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                    <button type="button" class="edit_button">@Html.ActionLink("Edit", "AddUpdate", new {  code=item.Code  },new { @class = "edit_Link" })</button>
+                    <button type="button" class="btn btn-danger">@Html.ActionLink("Delete", "Delete", new {  id=item.ProductID  })</button>
                    @*  @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) *@
             </td>
         </tr>

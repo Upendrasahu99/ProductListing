@@ -8,5 +8,6 @@ namespace ProductManagement.Interface
     {
         public List<ProductModel> GetAll();
         public ProductModel AddProduct(ProductModel productModel);
+        public string DeleteProduct(int productId);
     }
 }
