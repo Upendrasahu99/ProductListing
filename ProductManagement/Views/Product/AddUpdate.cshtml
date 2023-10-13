@@ -1,18 +1,18 @@
 ﻿@model ProductManagement.Models.ProductModel
 
 @{
-    ViewData["Title"] = "AddProduct";
+    ViewData["Title"] = "AddUpdate";
 }
 
-<h1>AddProduct</h1>
+<h1>AddUpdate</h1>
 
 <h4>ProductModel</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="AddProduct">
+        <form asp-action="AddUpdate">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            @* <div class="form-group">
+         @*    <div class="form-group">
                 <label asp-for="ProductID" class="control-label"></label>
                 <input asp-for="ProductID" class="form-control" />
                 <span asp-validation-for="ProductID" class="text-danger"></span>
@@ -57,25 +57,26 @@
             </div>
             <div class="form-group">
                 <label asp-for="Status" class="control-label"></label>
+                @* <input asp-for="Status" class="form-control" /> *@
+                <label asp-for="Status" class="control-label"></label>
                 <input asp-for="Status" type="radio" value="Active" />Active
                 <input asp-for="Status" type="radio" value="Inactive" />Inactive
-                @* <input asp-for="Status" class="form-control" /> *@
                 <span asp-validation-for="Status" class="text-danger"></span>
             </div>
-           @*  <div class="form-group">
+     @*        <div class="form-group">
                 <label asp-for="CreationDate" class="control-label"></label>
                 <input asp-for="CreationDate" class="form-control" />
                 <span asp-validation-for="CreationDate" class="text-danger"></span>
             </div> *@
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="ProductList">Back to List</a>
 </div>
 
 @section Scripts {

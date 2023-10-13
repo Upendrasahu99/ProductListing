@@ -35,7 +35,30 @@ namespace ProductManagement.Controllers
         public IActionResult AddProduct(ProductModel productModel)
         {
             productService.AddProduct(productModel);
-            return RedirectToAction("Index");
+            return RedirectToAction("ProductList");
+        }
+
+        [HttpGet]
+        public IActionResult AddUpdate(int code)
+        {
+            List<ProductModel> products = productService.GetAll().ToList();
+            ProductModel product = products.SingleOrDefault(u => u.Code == code);
+
+            if(product != null)
+            {
+                return View(product);
+            }
+            else
+            {
+                return View();
+            }
+        }
+
+        [HttpPost]
+        public IActionResult AddUpdate(ProductModel productModel)
+        {
+            productService.AddProduct(productModel);
+            return RedirectToAction("ProductList");
         }
     }
 }

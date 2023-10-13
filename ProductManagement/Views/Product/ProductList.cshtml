@@ -7,7 +7,7 @@
 <h1>ProductList</h1>
 
 <p>
-    <a asp-action="AddProduct">AddProduct</a>
+    <a asp-action="AddUpdate">Add</a>
 </p>
 @using (Html.BeginForm())
 {
@@ -80,9 +80,10 @@
                 @Html.DisplayFor(modelItem => item.CreationDate)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Edit", "AddUpdate", new {  code=item.Code  }) |
                 @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
                 @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                   @*  @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) *@
             </td>
         </tr>
 }
