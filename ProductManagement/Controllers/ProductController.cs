@@ -37,7 +37,8 @@ namespace ProductManagement.Controllers
             }
             else
             {
-                return View();
+                ProductModel productModel = new ProductModel();
+                return View(productModel);
             }
         }
 

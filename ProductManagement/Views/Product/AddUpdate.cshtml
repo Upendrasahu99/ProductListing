@@ -4,7 +4,7 @@
     ViewData["Title"] = "AddUpdate";
 }
 
-<h1>AddUpdate</h1>
+<h1 id="heading">AddProduct</h1>
 
 <h4>ProductModel</h4>
 <hr />
@@ -19,7 +19,7 @@
             </div> *@
             <div class="form-group">
                 <label asp-for="Code" class="control-label"></label>
-                <input asp-for="Code" class="form-control" />
+                <input asp-for="Code" class="form-control" id="input_code" />
                 <span asp-validation-for="Code" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -34,14 +34,14 @@
             </div>
             <div class="form-group">
                 <label asp-for="ExpiryDate" class="control-label"></label>
-                <input asp-for="ExpiryDate" class="form-control" />
+                <input asp-for="ExpiryDate" class="form-control" type="date" min="@DateTime.Now.ToString("yyyy-MM-dd")" />
                 <span asp-validation-for="ExpiryDate" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Category" class="control-label"></label>
                 @* <input asp-for="Category" class="form-control" /> *@
                 <select asp-for="Category">
-                    <option>Select Category</option>
+                    <option disabled >Select Category</option>
                     <option value="CategoryA">CategoryA</option>
                     <option value="CategoryB">CategoryB</option>
                     <option value="CategoryC">CategoryC</option>
@@ -58,18 +58,12 @@
             <div class="form-group">
                 <label asp-for="Status" class="control-label"></label>
                 @* <input asp-for="Status" class="form-control" /> *@
-                <label asp-for="Status" class="control-label"></label>
                 <input asp-for="Status" type="radio" value="Active" />Active
                 <input asp-for="Status" type="radio" value="Inactive" />Inactive
                 <span asp-validation-for="Status" class="text-danger"></span>
             </div>
-     @*        <div class="form-group">
-                <label asp-for="CreationDate" class="control-label"></label>
-                <input asp-for="CreationDate" class="form-control" />
-                <span asp-validation-for="CreationDate" class="text-danger"></span>
-            </div> *@
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Save" class="btn btn-primary" id="SaveButton" />
             </div>
         </form>
     </div>
@@ -78,6 +72,16 @@
 <div>
     <a asp-action="ProductList">Back to List</a>
 </div>
+<script>
+    let key = @Model.Code; 
+    if (key > 0) {
+        document.getElementById('SaveButton').value = 'Update';
+        document.getElementById('heading').innerHTML = 'UpdateProduct';
+        document.getElementById('input_code').readOnly = true;
+    }
+   
+
+</script>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

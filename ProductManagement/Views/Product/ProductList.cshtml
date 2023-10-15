@@ -11,17 +11,17 @@
 </p>
 @using (Html.BeginForm())
 {
-    <p>
+    <p class="search_Bar">
         Find by keyword: @Html.TextBox("keyword")
         <input type="submit" value="search" />
     </p>
 }
 <table class="table">
-    <thead>
+    <thead class="thead-dark">
         <tr>
-            <th>
+@*             <th>
                 @Html.DisplayNameFor(model => model.ProductID)
-            </th>
+            </th> *@
             <th>
                 @Html.DisplayNameFor(model => model.Code)
             </th>
@@ -51,10 +51,10 @@
     </thead>
     <tbody>
 @foreach (var item in Model) {
-        <tr>
-            <td>
+        <tr class="table_row">
+@*                 <td >
                 @Html.DisplayFor(modelItem => item.ProductID)
-            </td>
+            </td> *@
             <td>
                 @Html.DisplayFor(modelItem => item.Code)
             </td>
@@ -81,10 +81,13 @@
             </td>
             <td>
                     <button type="button" class="edit_button">@Html.ActionLink("Edit", "AddUpdate", new {  code=item.Code  },new { @class = "edit_Link" })</button>
-                    <button type="button" class="btn btn-danger">@Html.ActionLink("Delete", "Delete", new {  id=item.ProductID  })</button>
+                    <button type="button" class="btn btn-danger">@Html.ActionLink("Delete", "Delete", new {  id=item.ProductID  }, new { onclick = "return confirm('Are sure wants to delete?');" })</button> @* javascript funtion for confirm *@
                    @*  @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) *@
             </td>
         </tr>
 }
     </tbody>
 </table>
+
+
+
