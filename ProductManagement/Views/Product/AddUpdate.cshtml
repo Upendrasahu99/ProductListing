@@ -3,6 +3,10 @@
 @{
     ViewData["Title"] = "AddUpdate";
 }
+@if (TempData["Msg"] != null)
+{
+    <h3>@TempData["Msg"].ToString()</h3>
+}
 
 <h1 id="heading">AddProduct</h1>
 
@@ -42,11 +46,11 @@
                 @* <input asp-for="Category" class="form-control" /> *@
                 <select asp-for="Category">
                     <option disabled >Select Category</option>
-                    <option value="CategoryA">CategoryA</option>
-                    <option value="CategoryB">CategoryB</option>
-                    <option value="CategoryC">CategoryC</option>
-                    <option value="CategoryD">CategoryD</option>
-                    <option value="CategoryE">CategoryE</option>
+                    <option value="A">CategoryA</option>
+                    <option value="B">CategoryB</option>
+                    <option value="C">CategoryC</option>
+                    <option value="D">CategoryD</option>
+                    <option value="E">CategoryE</option>
                 </select>
                 <span asp-validation-for="Category" class="text-danger"></span>
             </div>

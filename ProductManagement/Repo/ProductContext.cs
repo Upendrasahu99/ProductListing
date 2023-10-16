@@ -13,6 +13,7 @@ namespace ProductManagement.Repo
         //Add Product in Product table
         public ProductModel Add(ProductModel productModel)
         {
+            
             Database.ExecuteSqlRaw("exec AddProduct @code, @productName, @description, @expiryDate, @category, @productImage, @status",
                     new SqlParameter("code", productModel.Code),
                     new SqlParameter("productName", productModel.ProductName),

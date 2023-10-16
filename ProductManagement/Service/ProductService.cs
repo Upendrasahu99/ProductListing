@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using ProductManagement.Interface;
 using ProductManagement.Models;
 using ProductManagement.Repo;
@@ -31,5 +32,7 @@ namespace ProductManagement.Service
         {
             return productContext.Delete(productId);
         }
+
+        
     }
 }

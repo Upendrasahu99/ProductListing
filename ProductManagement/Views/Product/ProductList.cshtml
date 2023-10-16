@@ -1,8 +1,11 @@
 ﻿@model IEnumerable<ProductManagement.Models.ProductModel>
-
+@* @model IPagedList<ProductManagement.Models.ProductModel>
+ *@
 @{
     ViewData["Title"] = "ProductList";
 }
+@* @using PagedList;
+@using PagedList.Mvc; *@
 <link href="d:\cs\project\taskproject\productlisting\productmanagement\wwwroot\css\productlist.css" rel="stylesheet" />
 <h1>ProductList</h1>
 
@@ -16,7 +19,7 @@
         <input type="submit" value="search" />
     </p>
 }
-<table class="table">
+<table id="myTable" class="table table-hover table-dark">
     <thead class="thead-dark">
         <tr>
 @*             <th>
@@ -65,7 +68,7 @@
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ExpiryDate)
+                @item.ExpiryDate.ToString("yyyy-mm-dd")
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Category)
@@ -77,7 +80,7 @@
                 @Html.DisplayFor(modelItem => item.Status)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.CreationDate)
+                @item.CreationDate.ToString("yyyy-mm-dd") 
             </td>
             <td>
                     <button type="button" class="edit_button">@Html.ActionLink("Edit", "AddUpdate", new {  code=item.Code  },new { @class = "edit_Link" })</button>
@@ -89,5 +92,6 @@
     </tbody>
 </table>
 
+@* @Html.PagedListPager *@
 
 

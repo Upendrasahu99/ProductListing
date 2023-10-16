@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ProductManagement.Interface;
 using ProductManagement.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -45,8 +46,16 @@ namespace ProductManagement.Controllers
         [HttpPost]
         public IActionResult AddUpdate(ProductModel productModel)
         {
-            productService.AddProduct(productModel);
-            return RedirectToAction("ProductList");
+            try
+            {
+                productService.AddProduct(productModel);
+                return RedirectToAction("ProductList");
+            }
+            catch(Exception e)
+            {
+                TempData["Msg"] = "Product added Fail." + e.Message;
+                return RedirectToAction("AddUpdate");
+            }
         }
 
         [HttpGet]
