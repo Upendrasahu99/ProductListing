@@ -19,7 +19,7 @@
         <input type="submit" value="search" />
     </p>
 } *@
-<table id="myTable" class="table table-hover table-dark">
+<table id="myTable" class="table table-striped">
     <thead class="thead-dark">
         <tr>
 @*             <th>
@@ -83,7 +83,7 @@
                 @item.CreationDate.ToString("yyyy-mm-dd") @* only show date not time *@
             </td>
             <td>
-                    @Html.ActionLink("", "AddUpdate", new {  code=item.Code  }, new { @class="fa fa-edit", style="color:white"})
+                    @Html.ActionLink("", "AddUpdate", new {  code=item.Code  }, new { @class="fa fa-edit", style="color:grey"})
                     @Html.ActionLink("", "Delete", new {  id=item.ProductID  },  new { onclick = "return confirm('Are sure wants to delete?');" , @class = "fa fa-trash-o", style="color:#e20b0b" }) @* javascript funtion for confirm *@
                    @*  @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) *@
                     
