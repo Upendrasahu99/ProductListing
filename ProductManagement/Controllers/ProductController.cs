@@ -15,34 +15,65 @@ namespace ProductManagement.Controllers
             this.productService = productService;
         }
 
+        /// <summary>
+        /// This action method is generate the view and fetched the data fo all product.
+        /// </summary>
+        /// <param name="keyword">For Searching particular string and date in all column.</param>
+        /// <returns>Return ProductList View</returns>
         public IActionResult ProductList(string keyword)
         {
-            List<ProductModel> products = productService.GetAll().ToList();
-            products = products.OrderByDescending(u => u.CreationDate).ToList();    
-            if(keyword != null)
+            try
             {
-                products = products.Where(u => u.ProductName.Contains(keyword) || u.Description.Contains(keyword) || u.Category.Contains(keyword) || u.Status.Contains(keyword) || u.Status.Contains(keyword)).ToList();
+                List<ProductModel> products = productService.GetAll().ToList();
+                products = products.OrderByDescending(u => u.CreationDate).ToList();
+                if (keyword != null)
+                {
+                    products = products.Where(u => u.ProductName.Contains(keyword) || u.Description.Contains(keyword) || u.Category.Contains(keyword) || u.Status.Contains(keyword) || u.Status.Contains(keyword)).ToList();
+                }
+                return View(products);
             }
-            return View(products);
+            catch(Exception e)
+            {
+                TempData["FetchErrorMsg"] = "Some error come when fetching the data " + e.Message;
+                return View();
+            }
         }
 
+        /// <summary>
+        /// This Method Generate the view for Create and Update. In Update data also coming in input block
+        /// </summary>
+        /// <param name="code">For particular product we want to update.</param>
+        /// <returns>Return Update Product view if try block executed otherwise it will return to Product List Action</returns>
         [HttpGet]
         public IActionResult AddUpdate(int code)
         {
-            List<ProductModel> products = productService.GetAll().ToList();
-            ProductModel product = products.SingleOrDefault(u => u.Code == code);
+            try
+            {
+                List<ProductModel> products = productService.GetAll().ToList();
+                ProductModel product = products.SingleOrDefault(u => u.Code == code);
 
-            if(product != null)
-            {
-                return View(product);
+                if (product != null)
+                {
+                    return View(product);
+                }
+                else
+                {
+                    ProductModel productModel = new ProductModel();
+                    return View(productModel);
+                }
             }
-            else
+            catch(Exception e)
             {
-                ProductModel productModel = new ProductModel();
-                return View(productModel);
+                TempData["Msg"] = "Some error come." + e.Message;
+                return RedirectToAction("ProductList");
             }
         }
 
+        /// <summary>
+        /// This Method is use for Add the product data
+        /// </summary>
+        /// <param name="productModel">Passing model for enter the data for particular type</param>
+        /// <returns>It will return to Product List Action if error occurs it will return to action AddUpdate.</returns>
         [HttpPost]
         public IActionResult AddUpdate(ProductModel productModel)
         {
@@ -58,12 +89,24 @@ namespace ProductManagement.Controllers
             }
         }
 
+        /// <summary>
+        /// This Method is use for deleting product data
+        /// </summary>
+        /// <param name="id">Passing product id for delete particular product</param>
+        /// <returns>It will return to action Product List if error occurs it will return message in Product List View.</returns>
         [HttpGet]
         public IActionResult Delete(int id) 
         {
-            
-            productService.DeleteProduct(id);
-            return RedirectToAction("ProductList");
+            try
+            {
+                productService.DeleteProduct(id);
+                return RedirectToAction("ProductList");
+            }
+            catch(Exception e)
+            {
+                TempData["MsgDelete"] = "Product added Fail." + e.Message;
+                return RedirectToAction("ProductList");
+            }
         }
     }
 }

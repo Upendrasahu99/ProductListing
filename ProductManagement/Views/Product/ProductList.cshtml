@@ -3,6 +3,17 @@
 @{
     ViewData["Title"] = "ProductList";
 }
+@if (TempData["Msg"] != null)
+{
+    <h3>@TempData["Msg"].ToString()</h3>
+}
+@if (TempData["MsgDelete"] != null)
+{
+    <h3>@TempData["MsgDelete"].ToString()</h3>
+}
+@if (TempData["FetchErrorMsg"] != null){
+    <h3>@TempData["FetchErrorMsg"].ToString()</h3>
+}
 
 <link href="d:\cs\project\taskproject\productlisting\productmanagement\wwwroot\css\productlist.css" rel="stylesheet" />
 <link href="~/css/productlist.css" rel="stylesheet" />
