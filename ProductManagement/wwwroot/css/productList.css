@@ -10,3 +10,7 @@ body {
 .table_row{
 
 }
+.Add {
+    display: flex;
+    justify-content: right;
+}
